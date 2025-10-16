@@ -8,15 +8,13 @@ from sentry_sdk.integrations.redis import RedisIntegration
 
 from .base import *  # noqa: F403
 from .base import APP_NAME
-from .base import APPS_DIR
 from .base import DATABASES
-from .base import DEBUG
 from .base import INSTALLED_APPS
 from .base import REDIS_URL
 from .base import SPECTACULAR_SETTINGS
-from .base import Path
 from .base import env
 
+DEBUG = env("DJANGO_DEBUG", default=False)
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
