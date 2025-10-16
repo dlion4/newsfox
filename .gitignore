@@ -9,7 +9,7 @@ node_modules/
 assets/
 # Virtual environments
 .venv
-.env/
+.env
 .ruff_cache/
 .vscode/
 staticfiles/
