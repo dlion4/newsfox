@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% load webpack_static from webpack_loader %}
+
+{% block main %}
+  {% include 'pages/sections/home/hero.html' %}
+  {% include 'pages/sections/home/popular.html' %}
+  {% include 'pages/sections/home/international.html' %}
+  <section class="gallery-news-area ptb-40">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12">
+          <div class="gallery-news">
+            <div class="section-title">
+              <h2>Gallery News</h2>
+            </div>
+            <div class="gallery-news-inner-slides owl-carousel owl-theme">
+              <div class="row align-items-center m-0">
+                <div class="col-lg-6 col-md-6 p-0">
+                  <div class="gallery-news-content">
+                    <h3>
+                      <a href=""><i class="icofont-camera-alt"></i> A glance (18 June 2024)</a>
+                    </h3>
+                    <p>Gloost Better They Are With A Featured. New York, USA, 17 June. Photo: John Smith</p>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 p-0">
+                  <div class="gallery-news-image">
+                    <img src="{% webpack_static 'images/placeholders/gallery-news1.jpg' %}"
+                         alt="image" />
+                  </div>
+                </div>
+              </div>
+              <div class="row align-items-center m-0">
+                <div class="col-lg-6 col-md-6 p-0">
+                  <div class="gallery-news-content">
+                    <h3>
+                      <a href=""><i class="icofont-camera-alt"></i> A glance (18 June 2024)</a>
+                    </h3>
+                    <p>Gloost Better They Are With A Featured. New York, USA, 17 June. Photo: John Smith</p>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 p-0">
+                  <div class="gallery-news-image">
+                    <img src="{% webpack_static 'images/placeholders/gallery-news1.jpg' %}"
+                         alt="image" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <div class="gallery-news-list">
+            <div class="media gallery-news-media align-items-center">
+              <div class="image">
+                <img src="{% webpack_static 'images/placeholders/small-4.jpg' %}"
+                     alt="image" />
+                <a href=""><i class="icofont-ui-camera"></i></a>
+              </div>
+              <div class="content">
+                <h3>
+                  <a href=""><i class="icofont-camera-alt"></i> A glance (17 June 2024)</a>
+                </h3>
+              </div>
+            </div>
+            <div class="media gallery-news-media align-items-center">
+              <div class="image">
+                <img src="{% webpack_static 'images/placeholders/small-2.jpg' %}"
+                     alt="image" />
+                <a href=""><i class="icofont-ui-camera"></i></a>
+              </div>
+              <div class="content">
+                <h3>
+                  <a href=""><i class="icofont-camera-alt"></i> A glance (16 June 2024)</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include 'pages/sections/home/videos.html' %}
+  <section class="all-news-area ptb-40">
+    <div class="container">
+      <div class="row">
+        {% comment %} {% for category, articles in grouped_articles.items %}
+    <div class="col-lg-4 col-md-6">
+      <div class="category-news">
+        <div class="section-title">
+          <h2>{{ category.title }}</h2>
+        </div>
+
+        {# --- Featured article (first one in the list) --- #}
+        {% with main_article=articles.0 %}
+          {% if main_article %}
+            <div class="single-featured-news">
+              {# image ignored or you can add conditionally #}
+              <div class="news-content">
+                <ul>
+                  <li>
+                    <i class="icofont-user-suited"></i>
+                    by <a href="#">Admin</a>
+                  </li>
+                  <li>
+                    <i class="icofont-calendar"></i>
+                    {{ main_article.first_published_at|date:"F d, Y" }}
+                  </li>
+                </ul>
+                <h3>
+                  <a href="{{ main_article.url }}">{{ main_article.title }}</a>
+                </h3>
+              </div>
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        {# --- Inner list of the remaining articles --- #}
+        <div class="category-inner-news">
+          {% for article in articles|slice:"1:" %}
+            <div class="single-inner-news">
+              <span>
+                <i class="icofont-calendar"></i>
+                {{ article.first_published_at|date:"F d, Y" }}
+              </span>
+              <h3>
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </h3>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+        {% endfor %} {% endcomment %}
+        {% for category, articles in grouped_articles.items %}
+          <div class="col-lg-4 col-md-6">
+            <div class="category-news">
+              <div class="section-title">
+                <h2>{{ category.title }}</h2>
+              </div>
+              {% for article in articles %}
+                <div class="single-inner-news">
+                  <span>
+                    <i class="icofont-calendar"></i>
+                    {{ article.first_published_at|date:"F d, Y" }}
+                  </span>
+                  <h3>
+                    <a href="{{ article.url }}" class="fs-5">{{ article.title }}</a>
+                  </h3>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% include 'pages/sections/home/more-news.html' %}
+  <div class="w-100  bg-light pb-lg-5">
+    <div class="container row mx-auto">
+      <div class="col-12">
+        <div class="newsletter-box">
+          <div class="section-title">
+            <h2>Newsletter</h2>
+          </div>
+          <div class="newsletter-box-inner">
+            <h3>Subscribe To Our Mailing List To Get The New Updates!</h3>
+            <i class="icofont-email"></i>
+            <form class="newsletter-form" data-toggle="validator">
+              <input type="email"
+                     class="newsletter-input"
+                     placeholder="Enter your email"
+                     name="email"
+                     required
+                     autocomplete="off" />
+              <button type="submit">
+                <i class="icofont-paper-plane"></i>
+              </button>
+              <div id="validator-newsletter" class="form-result"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

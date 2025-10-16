@@ -1,0 +1,12 @@
+{% if categories %}<h3 class="widget-title">Categories</h3>{% endif %}
+{% for category in categories %}
+  <ul>
+    <li>
+      <a href="">{{ category.title }}</a>
+    </li>
+  {% empty %}
+    <li>
+      <em>No archives available</em>
+    </li>
+  </ul>
+{% endfor %}

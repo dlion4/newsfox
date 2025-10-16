@@ -1,0 +1,104 @@
+{% load webpack_static from webpack_loader %}
+{% load wagtailimages_tags %}
+
+<section class="international-news-area ptb-40 pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="section-title">
+          <h2>International</h2>
+        </div>
+        <div class="international-news-inner">
+          <div class="row">
+            {% if international_articles %}
+              {% with item=international_articles.0 %}
+                <div class="col-lg-6">
+                  <div class="single-international-news">
+                    <div class="news-image">
+                      {% if item.cover %}
+                        {% image item.cover fill-800x600 as cover_img %}
+                        <img src="{{ cover_img.url }}" alt="{{ item.title }}" />
+                      {% else %}
+                        <img src="{% webpack_static 'images/placeholders/3.jpg' %}"
+                             alt="placeholder" />
+                      {% endif %}
+                    </div>
+                    <div class="news-content">
+                      <span>
+                        <i class="icofont-calendar"></i>
+                        {{ item.first_published_at|date:"F d, Y" }}
+                      </span>
+                      <h3>
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              {% endwith %}
+              <div class="col-lg-6">
+                <div class="international-news-list">
+                  {% for item in international_articles %}
+                    <div class="media news-media align-items-center">
+                      <a href="{{ item.url }}">
+                        {% if item.cover %}
+                          {% image item.cover max-320x200 as cover_img %}
+                          <img src="{{ cover_img.url }}" alt="{{ item.title }}" />
+                        {% else %}
+                          <img src="{% webpack_static 'images/placeholders/3.jpg' %}"
+                               alt="placeholder" />
+                        {% endif %}
+                      </a>
+                      <div class="content">
+                        <span><i class="icofont-calendar"></i> {{ item.first_published_at|date:"F d, Y" }}</span>
+                        <h3>
+                          <a href="{{ item.url }}">{{ item.title }}</a>
+                        </h3>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="section-title">
+          <h2>Stay Connected</h2>
+        </div>
+        <ul class="stay-connected">
+          <li>
+            <a href="https://www.facebook.com/login/" target="_blank">
+              <i class="icofont-facebook"></i><b>10.2K</b>
+              <span>Fans</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/login/" target="_blank">
+              <i class="icofont-twitter"></i><b>14.2K</b>
+              <span>Followers</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/login/" target="_blank">
+              <i class="icofont-linkedin"></i><b>11.2K</b>
+              <span>Fans</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/RSS" target="_blank">
+              <i class="icofont-rss"></i><b>15.2K</b>
+              <span>Subscriber</span>
+            </a>
+          </li>
+        </ul>
+        <div class="stay-connected-ads">
+          <a href="">
+            <img src="{% webpack_static 'images/placeholders/3-ads.png' %}"
+                 alt="image" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

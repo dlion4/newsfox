@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% load webpack_static from webpack_loader %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block main %}
+  <!-- Start News Details Area -->
+  <section class="news-details-area pb-40">
+    <div class="container">
+      <ul class="breadcrumb">
+        <li>
+          <a href="{% url 'home' %}"><i class="icofont-home"></i> Home</a>
+        </li>
+        <li>
+          <i class="icofont-rounded-right"></i>
+        </li>
+        <li>
+          <a>{{ page.category.title }}</a>
+        </li>
+      </ul>
+      <div class="row position-relative">
+        <div class="col-lg-8 col-md-12 article-column">
+          <div class="news-details">
+            <div class="article-content">
+              <ul class="entry-meta">
+                <li>
+                  <i class="icofont-user"></i>
+                  <a href=""></a>
+                </li>
+                <li>
+                  <i class="icofont-eye-alt"></i> 1040
+                </li>
+                <li>
+                  <i class="icofont-calendar"></i>
+                  {{ page.first_published_at|date:'F d, Y' }}
+                </li>
+              </ul>
+              <h3 class="mb-0">{{ page.title }}</h3>
+            </div>
+            <div class="article-img">
+              {% if page.cover %}
+                {% image page.cover fill-800x400 as cover_img %}
+                <img src="{{ cover_img.url }}" alt="{{ page.title }}" />
+              {% else %}
+                <img src="{% webpack_static 'images/placeholders/3.jpg' %}"
+                     alt="placeholder" />
+              {% endif %}
+            </div>
+            <div class="article-content">
+              {{ page.body|richtext }}
+              {% with tags=page.tags.all %}
+                {% if tags %}
+                  <ul class="category">
+                    <li>
+                      <span>Tags:</span>
+                    </li>
+                    {% for tag in tags %}
+                      <li>
+                        <a href="">{{ tag.name }}
+                          {% if not forloop.last %},{% endif %}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endwith %}
+            </div>
+          </div>
+          {% if page.get_previous_article or   page.get_next_article %}
+            <div class="post-controls-buttons">
+              {% if page.get_previous_article %}
+                <div>
+                  <a href="{{ page.get_previous_article.url }}">Prev Post</a>
+                </div>
+              {% endif %}
+              {% if page.get_next_article %}
+                <div>
+                  <a href="{{ page.get_next_article.url }}">Next Post</a>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+          <div class="comments-area">{% include "components/news/comments.html" %}</div>
+        </div>
+        <div class="col-lg-4 col-md-12 summary-column">
+          <aside class="widget-area" id="secondary">
+            <section class="widget widget_search">
+              <form class="search-form">
+                <label>
+                  <span class="screen-reader-text">Search for:</span>
+                  <input type="search" class="search-field" placeholder="Search here..." />
+                </label>
+                <input type="submit" class="search-submit" value="Search" />
+              </form>
+            </section>
+            <section class="widget widget_recent_entries">
+              <h3 class="widget-title">Recent Posts</h3>
+              {% for item in latest_articles %}
+                <ul>
+                  <li>
+                    <a href="{{ item.url }}">{{ item.title|truncatewords:"7" }}</a>
+                  </li>
+                </ul>
+              {% endfor %}
+            </section>
+            <section class="widget widget_recent_comments">
+              <h3 class="widget-title">Recent Comments</h3>
+              <ul>
+                <li>
+                  <span class="comment-author-link"><a href="">A WordPress Commenter</a></span>
+                  on
+                  <a href="">Hello world!</a>
+                </li>
+                <li>
+                  <span class="comment-author-link"><a href="">Sinmun</a></span>
+                  on
+                  <a href="">Hello world!</a>
+                </li>
+                <li>
+                  <span class="comment-author-link"><a href="">Wordpress</a></span>
+                  on
+                  <a href="">Hello world!</a>
+                </li>
+                <li>
+                  <span class="comment-author-link"><a href="">A WordPress Commenter</a></span>
+                  on
+                  <a href="">Hello world!</a>
+                </li>
+                <li>
+                  <span class="comment-author-link"><a href="">Sinmun</a></span>
+                  on
+                  <a href="">Hello world!</a>
+                </li>
+              </ul>
+            </section>
+            <section class="widget widget_archive">
+              {% include "components/news/archive.html" %}
+            </section>
+            <section class="widget widget_categories">
+              {% include "components/news/category.html" %}
+            </section>
+            <section class="widget widget_tag_cloud">
+              {% include "components/news/tags.html" %}
+            </section>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End News Details Area -->
+  <!-- Start More News Area -->
+  {% include 'pages/sections/home/more-news.html' %}
+  <!-- End More News Area -->
+{% endblock %}

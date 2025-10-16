@@ -1,0 +1,11 @@
+{% if tags %}<h3 class="widget-title">Tags</h3>{% endif %}
+<div class="tagcloud">
+  {% for tag in tags %}
+    <a href="">
+      {{ tag.name }}
+      <span class="tag-link-count">({{ tag.article_count }})</span>
+    </a>
+  {% empty %}
+    <p>No tags found.</p>
+  {% endfor %}
+</div>

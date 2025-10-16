@@ -1,0 +1,104 @@
+{% load webpack_static from webpack_loader %}
+
+<header class="header-area">
+  <div class="top-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-8 d-flex">
+          <div class="city-temperature">
+            <i class="icofont-ui-weather"></i>
+            <span>28.5<sup>c</sup></span> <b>Dubai</b>
+          </div>
+          <ul class="top-nav">
+            <li>
+              <a href="">Forums</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="">Advertisement</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6 col-md-4 text-end">
+          <ul class="top-social">
+            <li>
+              <a href="https://www.facebook.com/login/" target="_blank"><i class="icofont-facebook"></i></a>
+            </li>
+            <li>
+              <a href="https://twitter.com/login/" target="_blank"><i class="icofont-twitter"></i></a>
+            </li>
+          </ul>
+          <div class="header-date">
+            <i class="icofont-clock-time"></i>
+            <span id="current-date"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="navbar-area">
+    <div class="sinmun-mobile-nav">
+      <div class="logo">
+        <a href="{% url 'home' %}">
+          <img src="{% webpack_static 'images/logo.png' %}" alt="logo" />
+        </a>
+      </div>
+    </div>
+    <div class="sinmun-nav">
+      <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light">
+          <a class="navbar-brand" href="{% url 'home' %}">
+            <img src="{% webpack_static 'images/logo.png' %}" alt="logo" />
+          </a>
+          <div class="collapse navbar-collapse mean-menu"
+               id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              {% for category in categories|slice:"0:4" %}
+                <li class="nav-item">
+                  <a href="{{ category.get_absolute_url }}" class="nav-link">{{ category.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+            <div class="others-options">
+              <div class="header-search d-inline-block">
+                <div class="nav-search">
+                  <div class="nav-search-button">
+                    <i class="icofont-ui-search"></i>
+                  </div>
+                  <form>
+                    <span class="nav-search-close-button" tabindex="0">✕</span>
+                    <div class="nav-search-inner">
+                      <input name="search" placeholder="Search here...." />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  {% if  breaking_news %}
+  <div class="breaking-news">
+    <div class="container">
+      <div class="breaking-news-content clearfix">
+        <h6 class="breaking-title">
+          <i class="icofont-flash"></i> Breaking News:
+        </h6>
+        <div class="breaking-news-slides owl-carousel owl-theme">
+          {% for news in breaking_news %}
+          <div class="single-breaking-news">
+            <p>
+             <a href="{{ news.url }}" target="_blank" rel="noopener noreferrer">{{ news.title }}</a>
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</header>

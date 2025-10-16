@@ -1,0 +1,37 @@
+{% load webpack_static from webpack_loader %}
+{% load wagtailimages_tags %}
+
+<section class="video-news-area ptb-40">
+  <div class="container">
+    <div class="section-title">
+      <h2>Watch Videos</h2>
+    </div>
+    <div class="row">
+      <div class="video-news-slides owl-carousel owl-theme">
+        {% for video in videos %}
+          <div class="col-lg-12 col-md-12">
+            <div class="single-default-news">
+              {% if video.thumbnail %}
+                {% image video.thumbnail fill-800x600 as thumbnail %}
+                <img src="{{ thumbnail.url }}" alt="{{ video.title }}" />
+              {% else %}
+                <img src="{% webpack_static 'images/placeholders/3.jpg' %}"
+                     alt="placeholder" />
+              {% endif %}
+              {% if video.category %}
+                <div class="tags">
+                  <a href="#">{{ video.category.title }}</a>
+                </div>
+              {% endif %}
+              <div class="video-btn">
+                <a href="{{ video.video_url }}" role="button" class="popup-youtube">
+                  <i class="icofont-play-alt-3"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

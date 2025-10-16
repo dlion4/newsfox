@@ -1,0 +1,15 @@
+<h3 class="widget-title">Archives</h3>
+<ul>
+  {% for archive in archives %}
+    <li>
+      <a href="{{ archive.url }}">
+        {{ archive.month|date:'F Y' }}
+        <span>({{ archive.count }})</span>
+      </a>
+    </li>
+  {% empty %}
+    <li>
+      <em>No archives available</em>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,53 @@
+{% load webpack_static from webpack_loader %}
+{% load wagtailimages_tags %}
+
+<section class="popular-news-area ptb-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-12">
+        <div class="popular-section-ads">
+          <a href="">
+            <img src="{% webpack_static 'images/placeholders/2-ads.png' %}"
+                 alt="image" />
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-12">
+        {% if popular_articles %}
+          <div class="section-title">
+            <h2>Most Popular</h2>
+          </div>
+          <div class="row">
+            <div class="popular-news-slides owl-carousel owl-theme">
+              {% for item in popular_articles %}
+                <div class="col-lg-12 col-md-12">
+                  <div class="single-popular-news">
+                    <div class="news-image">
+                      {% if item.cover %}
+                        {% image item.cover fill-800x600 as cover_img %}
+                        <img src="{{ cover_img.url }}" alt="{{ item.title }}" />
+                      {% else %}
+                        <img src="{% webpack_static 'images/placeholders/3.jpg' %}"
+                             alt="placeholder" />
+                      {% endif %}
+                    </div>
+                    <div class="news-content">
+                      <h3>{{ item.title }}</h3>
+                    <span><i class="icofont-calendar"></i>
+                    {{ item.last_published_at|date:'F d, Y' }}
+                  </span>
+                </div>
+                <a href="{{ item.url }}" class="link-overlay"></a>
+                <div class="tags bg-2">
+                  <a href="{{ item.url }}">{{ item.category.title }}</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+</div>
+</section>

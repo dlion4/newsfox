@@ -1,0 +1,9 @@
+@use "bootstrap/scss/bootstrap";
+@import "libs";
+@import "style";
+@import "custom";
+@import "magnific-popup/src/css/main";
+
+.transition-ease {
+  transition: all 0.3s ease;
+}

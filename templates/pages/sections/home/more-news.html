@@ -1,0 +1,56 @@
+{% load webpack_static from webpack_loader %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% if page.get_related_articles %}
+  <section class="more-news-area">
+    <div class="container">
+      <div class="more-news-inner">
+        <div class="section-title">
+          <h2>More News</h2>
+        </div>
+        <div class="row">
+          <div class="more-news-slides owl-carousel owl-theme">
+            {% for item in page.get_related_articles %}
+              <div class="col-lg-12 col-md-12">
+                <div class="single-more-news">
+                  {% if item.cover %}
+                    {% image item.cover fill-800x400 as cover_img %}
+                    <img src="{{ cover_img.url }}" alt="{{ item.title }}" />
+                  {% else %}
+                    <img src="{% webpack_static 'images/placeholders/3.jpg' %}"
+                         alt="placeholder" />
+                  {% endif %}
+                  <div class="news-content">
+                    <ul>
+                      <li>
+                        <i class="icofont-user-suited"></i> by
+                        {% if item.authors.first %}
+                          <a href="">{{ item.authors.first.name }}</a>
+                        {% else %}
+                          <a href="">Admin</a>
+                        {% endif %}
+                      </li>
+                      <li>
+                        <i class="icofont-calendar"></i>
+                        {{ item.last_published_at|date:'F d, Y' }}
+                      </li>
+                    </ul>
+                    <h3>
+                      <a href="{{ item.url }}">{{ item.title }}</a>
+                    </h3>
+                  </div>
+                  {% if item.category %}
+                    <div class="tags bg-2">
+                      <a href="{{ item.category.get_absolute_url }}">{{ item.category|title }}</a>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}

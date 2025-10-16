@@ -1,0 +1,106 @@
+{% load webpack_static from webpack_loader %}
+{% load wagtailimages_tags %}
+
+<section class="new-news-area ptb-40">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-12">
+  <div class="new-news-list">
+    {% for item in featured_articles %}
+      <div class="single-new-news">
+        {% if item.cover %}
+          {% image item.cover fill-400x300 as cover_img %}
+          <img src="{{ cover_img.url }}" alt="{{ item.title }}">
+        {% else %}
+          <img src="{% webpack_static 'images/placeholders/8.jpg' %}" alt="placeholder">
+        {% endif %}
+        <div class="news-content">
+          <ul>
+            <li>
+              <i class="icofont-calendar"></i>
+              {{ item.last_published_at|date:"F d, Y" }}
+            </li>
+          </ul>
+          <h3><a href="{{ item.url }}">{{ item.title|truncatewords:9 }}</a></h3>
+        </div>
+        {% if item.category %}
+          <div class="tags bg-3">
+            <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="new-news-slides owl-carousel owl-theme">
+          {% for item in latest_articles %}
+            <div class="single-default-news">
+              {% if item.cover %}
+                {% image item.cover fill-800x600 as cover_img %}
+                <img src="{{ cover_img.url }}" alt="{{ item.title }}" />
+              {% else %}
+                <img src="{% webpack_static 'images/placeholders/3.jpg' %}"
+                     alt="placeholder" />
+              {% endif %}
+              <div class="news-content">
+                <ul>
+                  <li>
+                    <i class="icofont-user-suited"></i> by
+                    {% if item.authors.first %}
+                      <a href="">{{ item.authors.first.name }}</a>
+                    {% else %}
+                      <a href="">Admin</a>
+                    {% endif %}
+                  </li>
+                  <li>
+                    <i class="icofont-calendar"></i>
+                    {{ item.last_published_at|date:'F d, Y' }}
+                  </li>
+                </ul>
+                <h3>
+                  <a href="{{ item.url }}">{{ item.title }}</a>
+                </h3>
+              </div>
+              {% if item.category %}
+                <div class="tags">
+                  <a href="{{ item.category.get_absolute_url }}">{{ item.category|title }}</a>
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+     <div class="col-lg-3 col-md-12">
+  <div class="new-news-list">
+    {% for item in popular_articles %}
+      <div class="single-new-news">
+        {% if item.cover %}
+          {% image item.cover fill-400x300 as cover_img %}
+          <img src="{{ cover_img.url }}" alt="{{ item.title }}">
+        {% else %}
+          <img src="{% webpack_static 'images/placeholders/5.jpg' %}" alt="placeholder">
+        {% endif %}
+        <div class="news-content">
+          <ul>
+            <li>
+              <i class="icofont-calendar"></i>
+              {{ item.last_published_at|date:"F d, Y" }}
+            </li>
+          </ul>
+          <h3><a href="{{ item.url }}">{{ item.title|truncatewords:9 }}</a></h3>
+        </div>
+        {% if item.category %}
+          <div class="tags bg-4">
+            <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>

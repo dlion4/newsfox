@@ -1,0 +1,443 @@
+/*================================================
+Default CSS
+=================================================*/
+$main-color: #d72924;
+$black-color: #000000;
+$body-color:#ffffff;
+// Switch css
+.switch-box {
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    top: 150px;
+    transform: translateY(-50%);
+    background-color: $body-color;
+    height: 45px;
+    width: 50px;
+    padding-top: 5px;
+    padding-left: 10px;
+    border-radius: 30px 0 0 30px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: 0.4s;
+
+        &:before {
+            position: absolute;
+            content: "\ee7e";
+            font-family: IcoFont!important;
+            color: $black-color;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            top: 0;
+            left: 6px;
+            transition: 0.4s;
+        }
+    }
+    input:checked + .slider:before {
+        content: '\ef9e';
+    }
+    .slider {
+        &.round {
+            border-radius: 50px;
+
+            &:before {
+                border-radius: 50%;
+            } 
+        }
+    }
+}
+
+// Dark Style CSS
+.theme-dark {
+    body {
+        background-color: #000000;
+        color: #f1f1f1;
+    }
+    p {
+        color: #f1f1f1;
+        
+        a {
+            color: #f1f1f1 !important;
+        }
+    }
+    a {
+        color: $body-color;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        color: $body-color !important;
+
+        a {
+            color: $body-color !important;
+        }
+    }
+
+    //Navbar
+    .navbar-light {
+        .navbar-brand {
+            filter: invert(1);
+        }
+    }
+    .sinmun-nav {
+        nav {
+            .navbar-nav {
+                .nav-item {
+                    a {
+                        color: $body-color;
+                        &.active {
+                            color: $main-color;
+                        }
+                        &:hover {
+                            color: $main-color;
+                        }
+                    }
+                }
+            }
+            .others-options {
+                a {
+                    color: $body-color;
+                }
+            }
+        }
+        &.is-sticky {
+            background-color: #2a2a2a !important;
+        }
+    }
+
+    //News
+    .breaking-news-content {
+        background-color: #0e0e0e;
+        .breaking-title {
+            color: $main-color !important;
+        }
+    }
+
+    //Default News
+    .default-news-area {
+        background-color: #0e0e0e;
+    }
+    .single-default-inner-news {
+        .news-content {
+            background-color: #141414;
+        }
+    }
+    .default-video-news {
+        background-color: #141414;
+    }
+
+    //Internation News
+    .single-international-news {
+        background-color: #0e0e0e;
+    }
+    .international-news-list {
+        .news-media {
+            background-color: #0e0e0e;
+        }
+    }
+
+    //Politics
+    .single-politics-news {
+        .news-content {
+            border: 1px solid #6c6b6b;
+        }
+    }
+
+    //Health
+    .single-health-lifestyle-news {
+        .news-content {
+            border: 1px solid #6c6b6b;
+        }
+    }
+
+    //World
+    .single-around-the-world-news {
+        background-color: #0e0e0e;
+    }
+    .around-the-world-news-media {
+        background-color: #0e0e0e;
+    }
+
+    //Gallery News
+    .gallery-news-area {
+        background-color: #0e0e0e;
+    }
+    .gallery-news-list {
+        .gallery-news-media {
+            background-color: $black-color;
+        }
+    }
+    .gallery-news-inner-slides {
+        background-color: $black-color;
+    }
+    .single-gallery-box {
+        .gallery-content {
+            background-color: #0e0e0e;
+        }
+    }
+
+    //Inner
+    .north-america-inner-news {
+        background-color: #0e0e0e;
+        .single-north-america-inner-news {
+            border-bottom: 1px solid #686666;
+        }
+    }
+    .food-inner-news {
+        background-color: #0e0e0e;
+        .single-food-inner-news {
+            border-bottom: 1px solid #686666;
+        }
+    }
+    .fashion-inner-news {
+        background-color: #0e0e0e;
+        .single-fashion-inner-news {
+            border-bottom: 1px solid #686666;
+        }
+    }
+
+    //New News
+    .new-news-area {
+        background-color: #0e0e0e
+    }
+    .stay-connected {
+        li {
+            background-color: #0e0e0e;
+            a {
+                border-color: #807f7f;
+                b {
+                    color: $body-color;
+                }
+            }
+        }
+    }
+
+    //Blog
+    .main-content-area {
+        background-color: #0e0e0e;
+    }
+    .blog-box {
+        background-color: $black-color;
+        margin-bottom: 30px;
+        .posts-content {
+            .posts-meta {
+                span {
+                    a {
+                        color: $body-color;
+                        &:hover {
+                            color: $main-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .widget-area {
+        .widget {
+            ul {
+                li {
+                    a {
+                        color: $body-color;
+                        &:hover {
+                            color: $main-color;
+                        }
+                    }
+                }
+            }
+        }
+        .tagcloud {
+            a {
+                color: $body-color;
+                border: 1px solid #8b8989;
+            }
+        }
+    }
+
+    //Page Title
+    .page-title-content {
+        background-color: #0e0e0e;
+        ul {
+            li {
+                a {
+                    color: $body-color;
+                    &:hover {
+                        color: $main-color;
+                    }
+                }
+            }
+        }
+    }
+    .breadcrumb {
+        background-color: #0e0e0e;
+        li {
+            a {
+                color: $body-color;
+                &:hover {
+                    color: $main-color;
+                }
+            }
+        }
+    }
+    blockquote {
+        background-color: #0e0e0e;
+    }
+    .news-details {
+        .article-content {
+            border: 1px solid #807e7e;
+    
+        }
+    }
+    .post-controls-buttons {
+        border: 1px solid #807e7e;
+        div {
+            a {
+                border: 1px solid #807e7e;
+                color: $body-color;
+            }
+        }
+    }
+
+    .comments-area {
+        .comment-author {
+            .fn {
+                color: $body-color;
+            }
+        }
+        .comment-respond {
+            background: #0e0e0e;
+            border: 1px solid #272626;
+            label {
+                color: $body-color;
+            }
+            input {
+                background-color: $black-color;
+                color: $body-color;
+                border: 1px solid #272626;
+            }
+            textarea {
+                background-color: $black-color;
+                color: $body-color;
+                border: 1px solid #272626;
+            }
+        }
+    }
+
+    //Author
+    .author-box {
+        background-color: #0e0e0e;
+        .author-info {
+            ul {
+                &.post-meta-info {
+                    li {
+                        a {
+                            color: $body-color;
+                            &:hover {
+                                color: $main-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //Contact
+    .contact-form {
+        .form-group {
+            .form-control {
+                background-color: #0e0e0e;
+                color: $body-color;
+                border-color: #403f3f !important;
+                &::placeholder {
+                    color: $body-color;
+                }
+            }
+        }
+    }
+
+    //Login
+    .login-area {
+        &::before {
+            background: linear-gradient(-9deg, #25262a 0%, #28292e 40%, #3f2b2f 100%);
+        }
+    }
+    .login-form {
+        background-color: #0e0e0e;
+        &::before {
+            background-color: $black-color;
+        }
+        form {
+            .form-group {
+                label {
+                    border-right: 1px solid #706f6f;
+                }
+                .form-control {
+                    background-color: $black-color;
+                    color: $body-color;
+                    border-color: #706f6f !important;
+                    &::placeholder {
+                        color: $body-color;
+                    }
+                }
+            }
+        }
+    }
+
+    //Sign Up
+    .signup-area {
+        &::before {
+            background: linear-gradient(-9deg, #25262a 0%, #28292e 40%, #3f2b2f 100%);
+        }
+    }
+    .signup-form {
+        background-color: #0e0e0e;
+        &::before {
+            background-color: $black-color;
+        }
+        form {
+            .form-group {
+                label {
+                    border-right: 1px solid #706f6f;
+                }
+                .form-control {
+                    background-color: $black-color;
+                    color: $body-color;
+                    border-color: #706f6f !important;
+                    &::placeholder {
+                        color: $body-color;
+                    }
+                }
+            }
+        }
+    }
+
+    //Coming Soon
+    .coming-soon-area {
+        &::before {
+            background: linear-gradient(-9deg, #25262a 0%, #28292e 40%, #3f2b2f 100%);
+        }
+    }
+
+
+
+}

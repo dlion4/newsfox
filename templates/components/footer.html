@@ -1,0 +1,31 @@
+{% load webpack_static from webpack_loader %}
+
+<footer class="footer-area"
+        style="background-color: transparent;
+               padding-top:0">
+  <div class="copyright-area">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12">
+          <p>© NewsFox</p>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <ul class="footer-nav">
+            <li>
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li>
+              <a href="">Blog</a>
+            </li>
+            <li>
+              <a href="">Contact</a>
+            </li>
+            <li>
+              <a href="">Advertisement</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
